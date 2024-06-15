@@ -12,22 +12,18 @@ mongoClient.connect('mongodb://0.0.0.0:27017', { useNewUrlParser: true, useUnifi
   }
   else {
     console.log('Successfully connected to the database');
-    const db = client.db('companyDB');
-    db.collection('employees')
-  .find({ department: 'IT' })
-  .toArray()
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
+    const db = client.db('companyDB');
     const app = express();
 
     app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
+
+    app.use((req, res, next) => {
+      req.db = db;
+      next();
+    });
 
     app.use('/api', employeesRoutes);
     app.use('/api', departmentsRoutes);
@@ -35,7 +31,7 @@ mongoClient.connect('mongodb://0.0.0.0:27017', { useNewUrlParser: true, useUnifi
 
     app.use((req, res) => {
       res.status(404).send({ message: 'Not found...' });
-    })
+    });
 
     app.listen('8000', () => {
       console.log('Server is running on port: 8000');
