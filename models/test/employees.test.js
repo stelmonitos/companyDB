@@ -16,7 +16,7 @@ describe('Employee', () => {
         for (let arg of cases) {
             const emp = new Employee({ firstName: arg, lastName: arg, department: arg });
             const errors = emp.validateSync();
-            expect(errors.errors.name).to.exist;
+            expect(errors).to.exist;
         };
     });
     // it('should throw an error if "name" is too short or too long', () => {

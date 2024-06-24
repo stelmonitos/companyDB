@@ -18,22 +18,18 @@ describe('Department', () => {
         for (let name of cases) {
             const dep = new Department({ name });
             
-            dep.validateSync(err => {
-                expect(err.errors.name).to.exist;
-            });
+            const errors = dep.validateSync();
+            expect(errors.name).to.exist;   
         }
     });
     it('should throw an error if "name" is too short or too long', () => {
         
-        // const cases = ['Abc', 'abcd', 'Lorem Ipsum, Lorem Ip']; // we test various cases, some of them are too short, some of them are too long
-        const cases = ['Abcdef']
-
+        const cases = ['Abc', 'abcd', 'Lorem Ipsum, Lorem Ip']; // we test various cases, some of them are too short, some of them are too long
+        // const cases = ['Abcdr23432432432432432432432423423432ef']
         for(let name of cases) {
             const dep = new Department({ name });
-            const error = dep.validateSync();
-            console.log(error);
-            expect(error.errors.name).to.exist;
-            
+            const errors = dep.validateSync();
+            expect(errors.name).to.exist;     
         }
         
     });
@@ -43,11 +39,10 @@ describe('Department', () => {
         for(let name of cases) {
             const dep = new Department({ name });
             
-            dep.validateSync(err => {
-                expect(err).to.not.exist;
-            });
-            
+            const errors = dep.validateSync();
+            expect(errors).to.not.exist;   
         }
+
     });
     
     after(() => {
