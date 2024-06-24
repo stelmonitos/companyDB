@@ -19,12 +19,11 @@ describe('Employee', () => {
             expect(errors).to.exist;
         };
     });
-    // it('should throw an error if "name" is too short or too long', () => {
-
-    // });
-    // it('should not throw an error if "name" is okay', () => {
-
-    // });
+    it('should not throw an error if arguments are okay', () => {
+        const emp = new Employee({ firstName: 'Cibst', lastName: 'Eno', department: 'Human Resources' });
+        const errors = emp.validateSync();
+        expect(errors).to.not.exist;
+    });
     after(() => {
         mongoose.models = {};
     });

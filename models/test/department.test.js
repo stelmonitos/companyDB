@@ -25,7 +25,7 @@ describe('Department', () => {
     it('should throw an error if "name" is too short or too long', () => {
         
         const cases = ['Abc', 'abcd', 'Lorem Ipsum, Lorem Ip']; // we test various cases, some of them are too short, some of them are too long
-        // const cases = ['Abcdr23432432432432432432432423423432ef']
+
         for(let name of cases) {
             const dep = new Department({ name });
             const errors = dep.validateSync();
