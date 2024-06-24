@@ -24,7 +24,4 @@ describe('Employee', () => {
         const errors = emp.validateSync();
         expect(errors).to.not.exist;
     });
-    after(() => {
-        mongoose.models = {};
-    });
 })
