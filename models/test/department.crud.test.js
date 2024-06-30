@@ -3,16 +3,16 @@ const expect = require("chai").expect;
 const mongoose = require("mongoose");
 
 describe("Department", () => {
-  before(async () => {
-    try {
-      await mongoose.connect("mongodb://localhost:27017/companyDBtest", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  });
+  // before(async () => {
+  //   try {
+  //     await mongoose.connect("mongodb://localhost:27017/companyDBtest", {
+  //       useNewUrlParser: true,
+  //       useUnifiedTopology: true,
+  //     });
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // });
   //READ
   describe("Reading data", () => {
     after(async () => {
@@ -36,7 +36,6 @@ describe("Department", () => {
       expect(department.name).to.be.equal("Department #1");
     });
   });
-
   //CREATE
   describe("Creating data", () => {
     after(async () => {

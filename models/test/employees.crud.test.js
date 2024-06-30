@@ -4,16 +4,16 @@ const expect = require("chai").expect;
 const mongoose = require("mongoose");
 
 describe("Employee", () => {
-  before(async () => {
-    try {
-      await mongoose.connect("mongodb://localhost:27017/companyDBtest", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  });
+  // before(async () => {
+  //   try {
+  //     await mongoose.connect("mongodb://localhost:27017/companyDBtest", {
+  //       useNewUrlParser: true,
+  //       useUnifiedTopology: true,
+  //     });
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // });
   //READ
   describe("Reading data", () => {
     after(async () => {
@@ -164,7 +164,7 @@ describe("Employee", () => {
   
     it("should return documents with populated 'department' field", async () => {
       const employees = await Employee.find().populate('department');
-      expect(employees.length).to.be.greaterThan(0);
+      expect(employees.length).to.be.not.equal(0);
       employees.forEach(employee => {
         expect(employee.department).to.have.property('name');
         expect(['Human Resources', 'Marketing']).to.include(employee.department.name);
