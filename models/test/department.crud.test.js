@@ -21,7 +21,7 @@ describe("Department", () => {
     before(async () => {
       const testDepOne = new Department({ name: "Department #1" });
       await testDepOne.save();
-
+      
       const testDepTwo = new Department({ name: "Department #2" });
       await testDepTwo.save();
     });
@@ -36,6 +36,7 @@ describe("Department", () => {
       expect(department.name).to.be.equal("Department #1");
     });
   });
+
   //CREATE
   describe("Creating data", () => {
     after(async () => {
@@ -52,7 +53,7 @@ describe("Department", () => {
     beforeEach(async () => {
       const testDepOne = new Department({ name: 'Department #1' });
       await testDepOne.save();
-
+      
       const testDepTwo = new Department({ name: 'Department #2' });
       await testDepTwo.save();
     });
@@ -78,12 +79,13 @@ describe("Department", () => {
     afterEach(async () => {
       await Department.deleteMany();
     });
+  });
     //DELETE
     describe('Removing data', () => {
       beforeEach(async () => {
         const testDepOne = new Department({ name: 'Department #1' });
         await testDepOne.save();
-      
+        
         const testDepTwo = new Department({ name: 'Department #2' });
         await testDepTwo.save();
       });
@@ -101,5 +103,4 @@ describe("Department", () => {
         await Department.deleteMany();
       });
     });
-  });
 });
